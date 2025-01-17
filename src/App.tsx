@@ -1,39 +1,41 @@
-import React, {useState} from 'react';
-import './App.css';
+import React, { useState } from "react"
+import "./App.css"
 
-import {FancyDie} from './models'
-import DieComponent from './Die'
-import Mice from './Mice'
+import { FancyDie } from "./models"
+import DieComponent from "./Die"
+import Mice from "./Mice"
 
 const initialDice: Array<FancyDie> = [
-  {sides: 20, value: null},
-  {sides: 6, value: null},
-  {sides: 8, value: null, color: '#ffff00'}
+  { sides: 20, value: null },
+  { sides: 6, value: null },
+  { sides: 8, value: null, color: "#ffff00" },
 ]
 
 const App: React.FC = () => {
   const [dice, setDice] = useState(initialDice)
-
+  console.log("=>test")
   return (
     <div className="App">
-      {dice.map((die, index) => <DieComponent key={index} {...die} />)}
-
+      {dice.map((die, index) => (
+        <DieComponent key={index} {...die} />
+      ))}
       <div className="roll">
-        <button onClick={() => {
-          setDice(
-            dice.map(die => ({
-              ...die,
-              value: Math.floor(Math.random() * die.sides) + 1
-            }))
-          )
-        }}
+        <button
+          onClick={() => {
+            setDice(
+              dice.map((die) => ({
+                ...die,
+                value: Math.floor(Math.random() * die.sides) + 1,
+              }))
+            )
+          }}
         >
           Roll!
         </button>
       </div>
       <Mice />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
